@@ -27,6 +27,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: 環境変数を設定
+        run: |
+          echo "SERVICE_DOMAIN=${{ secrets.SERVICE_DOMAIN }}" >> $GITHUB_ENV
+          echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+
       - name: 依存関係をインストール
         run: npm ci
 
