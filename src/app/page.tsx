@@ -39,11 +39,8 @@ type Props = {
 
 async function getPortfolioData() {
   const works = await client.get({ endpoint: 'works' });
-  console.log('Works:', works);
   const skills = await client.get({ endpoint: 'skills' });
-  console.log('Skills:', skills);
   const about = await client.get({ endpoint: 'about' });
-  console.log('About:', about);
   const contact = await client.get({ endpoint: 'contact' });
 
   return {
