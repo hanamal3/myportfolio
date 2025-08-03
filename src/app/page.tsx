@@ -105,6 +105,7 @@ export default async function Page() {
                 alt={work.title}
                 width={400}
                 height={180}
+                unoptimized
                 className="w-full h-[180px] object-cover mb-4"
               />
               <p className="text-sm font-semibold">{work.title}</p>
