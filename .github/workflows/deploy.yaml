@@ -17,7 +17,7 @@ jobs:
           sed -i "s/__MICROCMS_API_KEY__/${{ secrets.MICROCMS_API_KEY }}/g" index.html
 
       - name: Prepare dist
-        run: mkdir dist && cp index.html dist/
+        run: mkdir dist && cp index.html favicon.svg dist/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
