@@ -1,42 +1,14 @@
-name: Next.js CI
+name: CI
 
 on:
-  push:
-    branches: [main, develop]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
-  build-and-test:
+  check:
     runs-on: ubuntu-latest
-
     steps:
-      - name: リポジトリをチェックアウト
-        uses: actions/checkout@v4
-
-      - name: Node.js をセットアップ
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: npm キャッシュを利用
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: 環境変数を設定
+      - uses: actions/checkout@v4
+      - name: Check placeholders exist
         run: |
-          echo "MICROCMS_SERVICE_DOMAIN=${{ secrets.MICROCMS_SERVICE_DOMAIN }}" >> $GITHUB_ENV
-          echo "MICROCMS_API_KEY=${{ secrets.MICROCMS_API_KEY }}" >> $GITHUB_ENV
-
-      - name: 依存関係をインストール
-        run: npm ci
-
-      - name: Lint チェック
-        run: npm run lint
-
-      - name: Next.js ビルド
-        run: npm run build
+          grep -q '__MICROCMS_API_KEY__' index.html && echo "OK: API key is a placeholder"

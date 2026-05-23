@@ -1,4 +1,4 @@
-name: Deploy Next.js to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -8,30 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: 環境変数を設定
+      - name: Inject secrets
         run: |
-          echo "MICROCMS_SERVICE_DOMAIN=${{ secrets.MICROCMS_SERVICE_DOMAIN }}" >> $GITHUB_ENV
-          echo "MICROCMS_API_KEY=${{ secrets.MICROCMS_API_KEY }}" >> $GITHUB_ENV
+          sed -i "s/__MICROCMS_SERVICE_DOMAIN__/${{ secrets.MICROCMS_SERVICE_DOMAIN }}/g" index.html
+          sed -i "s/__MICROCMS_API_KEY__/${{ secrets.MICROCMS_API_KEY }}/g" index.html
 
-      - name: Build and export static site
-        run: |
-          npm run build
+      - name: Prepare dist
+        run: mkdir dist && cp index.html dist/
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./dist

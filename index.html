@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANAE | Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    header h1 { font-size: 1.1rem; font-weight: 700; }
+    nav { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .hero h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .hero p { font-size: 0.8rem; letter-spacing: 0.2em; color: #6b7280; }
+
+    /* Section common */
+    section { padding: 4rem 1.5rem; }
+    section.bg-gray { background: #f3f4f6; }
+    .section-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Works grid */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .work-card {
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .work-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 0.75rem;
+      border-radius: 0.25rem;
+    }
+    .work-card .work-title { font-size: 0.9rem; font-weight: 600; }
+    .work-card .work-desc { font-size: 0.8rem; color: #6b7280; margin-top: 0.25rem; }
+    .work-card .work-link {
+      font-size: 0.75rem;
+      color: #3b82f6;
+      text-decoration: underline;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      align-self: flex-end;
+    }
+
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .skill-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .skill-dot {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .skill-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .skill-item p { font-size: 0.8rem; color: #4b5563; }
+
+    /* About */
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .about-inner { flex-direction: row; }
+    }
+    .about-inner img {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .about-text { font-size: 0.9rem; color: #374151; }
+    .about-text p { margin-bottom: 0.75rem; }
+
+    /* Contact */
+    .contact-inner { text-align: center; }
+    .contact-inner p { font-size: 0.85rem; color: #6b7280; margin-bottom: 1rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1.5rem; }
+    .contact-links a { color: #3b82f6; font-size: 0.9rem; text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      padding: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    /* Loading / Error */
+    .loading { text-align: center; color: #9ca3af; font-size: 0.85rem; padding: 2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>HANAE</h1>
+    <nav>
+      <a href="#works">WORKS</a>
+      <a href="#skill">SKILL</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>HANAE</h2>
+    <p>PORTFOLIO</p>
+  </div>
+
+  <section id="works" class="bg-gray">
+    <h3 class="section-title">WORKS</h3>
+    <div class="works-grid" id="works-grid">
+      <p class="loading">読み込み中...</p>
+    </div>
+  </section>
+
+  <section id="skill">
+    <h3 class="section-title">SKILL</h3>
+    <div class="skills-grid" id="skills-grid">
+      <p class="loading">読み込み中...</p>
+    </div>
+  </section>
+
+  <section class="bg-gray">
+    <h3 class="section-title">ABOUT</h3>
+    <div class="about-inner" id="about-inner">
+      <p class="loading">読み込み中...</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-inner">
+      <h3 class="section-title">CONTACT</h3>
+      <p>お問い合わせは、SNSかメールにてお願いいたします。</p>
+      <div class="contact-links" id="contact-links">
+        <span class="loading">読み込み中...</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>©HANAE</footer>
+
+  <script>
+    const API_BASE = 'https://__MICROCMS_SERVICE_DOMAIN__.microcms.io/api/v1';
+    const API_KEY  = '__MICROCMS_API_KEY__';
+    const HEADERS  = { 'X-MICROCMS-API-KEY': API_KEY };
+
+    const SKILL_COLORS = [
+      '#fecaca', '#bfdbfe', '#bbf7d0', '#fef08a', '#e9d5ff',
+      '#fbcfe8', '#c7d2fe', '#99f6e4', '#fed7aa', '#e5e7eb',
+    ];
+
+    async function get(endpoint) {
+      const res = await fetch(`${API_BASE}/${endpoint}`, { headers: HEADERS });
+      if (!res.ok) throw new Error(`${endpoint} fetch failed`);
+      return res.json();
+    }
+
+    function renderWorks(works) {
+      const grid = document.getElementById('works-grid');
+      if (!works.length) { grid.innerHTML = '<p class="loading">作品はまだありません</p>'; return; }
+      grid.innerHTML = works.map(w => `
+        <div class="work-card">
+          <img src="${w.image.url}" alt="${e(w.title)}" loading="lazy">
+          <p class="work-title">${e(w.title)}</p>
+          <p class="work-desc">${e(w.description)}</p>
+          ${w.link ? `<a class="work-link" href="${e(w.link)}" target="_blank" rel="noopener noreferrer">サイトを見る</a>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function renderSkills(skills) {
+      const grid = document.getElementById('skills-grid');
+      const sorted = [...skills].sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''));
+      if (!sorted.length) { grid.innerHTML = '<p class="loading">スキルはまだありません</p>'; return; }
+      grid.innerHTML = sorted.map((s, i) => `
+        <div class="skill-item">
+          <div class="skill-dot" style="background:${SKILL_COLORS[i % SKILL_COLORS.length]}"></div>
+          <div>
+            <h4>${e(s.title)}</h4>
+            <p>${e(s.description)}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAbout(about) {
+      document.getElementById('about-inner').innerHTML = `
+        <img src="${about.image.url}" alt="About HANAE" loading="lazy">
+        <div class="about-text">${about.text}</div>
+      `;
+    }
+
+    function renderContact(contact) {
+      const links = [];
+      if (contact.instagram) links.push(`<a href="${e(contact.instagram)}" target="_blank" rel="noopener noreferrer">Instagram</a>`);
+      if (contact.email)     links.push(`<a href="mailto:${e(contact.email)}">${e(contact.email)}</a>`);
+      document.getElementById('contact-links').innerHTML = links.join('') || '<span>-</span>';
+    }
+
+    /* HTML escape helper */
+    function e(str) {
+      return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    async function init() {
+      try {
+        const [worksData, skillsData, about, contact] = await Promise.all([
+          get('works'),
+          get('skills'),
+          get('about'),
+          get('contact'),
+        ]);
+        renderWorks(worksData.contents);
+        renderSkills(skillsData.contents);
+        renderAbout(about);
+        renderContact(contact);
+      } catch (err) {
+        console.error(err);
+        document.querySelectorAll('.loading').forEach(el => {
+          el.textContent = 'データの読み込みに失敗しました';
+        });
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
